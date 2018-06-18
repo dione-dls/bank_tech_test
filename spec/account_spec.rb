@@ -1,7 +1,6 @@
 require 'account'
 
 describe Account do
-
   subject(:account) { described_class.new }
 
   describe '#balance' do
@@ -12,7 +11,13 @@ describe Account do
 
   describe '#deposit' do
     it 'increases the balance by a specified amount' do
-      expect{ account.deposit(1000) }.to change { account.balance }.by 1000
+      expect { account.deposit(1000) }.to change { account.balance }.by 1000
+    end
+  end
+
+  describe '#withdraw' do
+    it 'decreases the balance by a specified amount' do
+      expect { account.withdraw(500) }.to change { account.balance }.by -500
     end
   end
 end
