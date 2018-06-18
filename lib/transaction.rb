@@ -1,7 +1,6 @@
 require 'date'
 
 class Transaction
-
   attr_reader :balance, :amount, :type, :date
 
   def initialize(balance, amount, type)

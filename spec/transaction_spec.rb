@@ -1,9 +1,9 @@
 require 'transaction'
 
 describe Transaction do
-  describe '#initialize' do
-    subject(:transaction) { described_class.new(0, 1000, 'credit') }
+  subject(:transaction) { described_class.new(0, 1000, 'credit') }
 
+  describe '#initialize' do
     it 'returns the balance of the account' do
       expect(transaction.balance).to eq 0
     end

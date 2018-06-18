@@ -26,6 +26,6 @@ class Account
   end
 
   def credit(amount)
-    transaction = Transaction.new(@balance, amount, 'credit')
+    Transaction.new(@balance, amount, 'credit')
   end
 end

@@ -14,8 +14,7 @@ describe Account do
       expect { account.deposit(1000) }.to change { account.balance }.by 1000
     end
 
-    it 'creates a new credit transaction record' do
-
+    xit 'creates a new credit transaction record' do
     end
   end
 
