@@ -1,3 +1,5 @@
+require_relative 'transaction'
+
 class Account
   attr_reader :balance
 
@@ -9,6 +11,7 @@ class Account
 
   def deposit(amount)
     @balance += amount
+    credit(amount)
   end
 
   def withdraw(amount)
@@ -20,5 +23,9 @@ class Account
 
   def insufficient_funds?(amount)
     amount > balance
+  end
+
+  def credit(amount)
+    transaction = Transaction.new(@balance, amount, 'credit')
   end
 end

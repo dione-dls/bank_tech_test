@@ -13,6 +13,10 @@ describe Account do
     it 'increases the balance by a specified amount' do
       expect { account.deposit(1000) }.to change { account.balance }.by 1000
     end
+
+    it 'creates a new credit transaction record' do
+
+    end
   end
 
   describe '#withdraw' do
