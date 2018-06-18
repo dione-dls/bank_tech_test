@@ -12,4 +12,10 @@ describe Printer do
       expect(printer.all_transactions).to eq transaction_log
     end
   end
+
+  describe '#header' do
+    it 'pretty prints a statement header' do
+      expect { printer.header }.to output(" date || credit || debit || balance \n").to_stdout
+    end
+  end
 end
