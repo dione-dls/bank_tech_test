@@ -17,6 +17,7 @@ class Account
   def withdraw(amount)
     raise 'Insufficient funds' if insufficient_funds?(amount)
     @balance -= amount
+    debit(amount)
   end
 
   private
@@ -27,5 +28,9 @@ class Account
 
   def credit(amount)
     Transaction.new(@balance, amount, 'credit')
+  end
+
+  def debit(amount)
+    Transaction.new(@balance, amount, 'debit')
   end
 end

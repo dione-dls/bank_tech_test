@@ -14,7 +14,8 @@ describe Account do
       expect { account.deposit(1000) }.to change { account.balance }.by 1000
     end
 
-    xit 'creates a new credit transaction record' do
+    xit 'returns a new credit transaction record' do
+
     end
   end
 
@@ -25,6 +26,9 @@ describe Account do
     end
     it 'raises an error when amount to be withdrawn is greater than balance' do
       expect { account.withdraw(4000) }.to raise_error RuntimeError
+    end
+    xit 'returns a new debit transaction record' do
+
     end
   end
 end
