@@ -15,7 +15,6 @@ describe Account do
     end
 
     xit 'returns a new credit transaction record' do
-
     end
   end
 
@@ -28,7 +27,6 @@ describe Account do
       expect { account.withdraw(4000) }.to raise_error RuntimeError
     end
     xit 'returns a new debit transaction record' do
-
     end
   end
 end

@@ -6,6 +6,6 @@ class Printer
   end
 
   def header
-    puts " date || credit || debit || balance "
+    puts ' date || credit || debit || balance '
   end
 end

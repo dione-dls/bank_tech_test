@@ -1,19 +1,19 @@
 require 'transaction'
 
 describe Transaction do
-  subject(:transaction) { described_class.new(0, 1000, 'credit') }
+  subject(:transaction) { described_class.new(0, 1000, 0) }
 
   describe '#initialize' do
     it 'returns the balance of the account' do
       expect(transaction.balance).to eq 0
     end
 
-    it 'returns the amount of the transaction' do
-      expect(transaction.amount).to eq 1000
+    it 'returns the amount of the credit transaction' do
+      expect(transaction.credit_amount).to eq 1000
     end
 
-    it 'returns the type of transaction' do
-      expect(transaction.type).to eq 'credit'
+    it 'returns the amount of the debit transaction' do
+      expect(transaction.debit_amount).to eq 0
     end
 
     it 'returns the transaction date' do
