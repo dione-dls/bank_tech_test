@@ -12,6 +12,13 @@ class Account
   end
 
   def withdraw(amount)
+    raise 'Insufficient funds' if insufficient_funds?(amount)
     @balance -= amount
+  end
+
+  private
+
+  def insufficient_funds?(amount)
+    amount > balance
   end
 end

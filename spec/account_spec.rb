@@ -17,7 +17,11 @@ describe Account do
 
   describe '#withdraw' do
     it 'decreases the balance by a specified amount' do
-      expect { account.withdraw(500) }.to change { account.balance }.by -500
+      account.deposit(1000)
+      expect { account.withdraw(500) }.to change { account.balance }.by(-500)
+    end
+    it 'raises an error when amount to be withdrawn is greater than balance' do
+      expect { account.withdraw(4000) }.to raise_error RuntimeError
     end
   end
 end
