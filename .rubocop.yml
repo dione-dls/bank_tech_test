@@ -4,9 +4,7 @@ AllCops:
     - 'lib/features.rb'
 
 Metrics/LineLength:
-  Max: 100
-
-Metrics/LineLength:
+  Max: 120
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
