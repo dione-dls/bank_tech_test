@@ -13,7 +13,7 @@ describe TransactionLog do
   end
 
   describe '#add' do
-    it 'can record transactions inside the array of all transactions' do
+    it 'records transactions inside the array of all transactions' do
       transaction_log.add(transaction_1)
       transaction_log.add(transaction_2)
       transaction_log.add(transaction_3)
