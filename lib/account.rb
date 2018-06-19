@@ -19,7 +19,7 @@ class Account
 
   def withdraw(amount)
     raise 'Insufficient funds' if insufficient_funds?(amount)
-    raise 'Amount below minimum withdrawal requirement' if below?(@minimum_deposit, amount)
+    raise 'Amount below minimum withdrawal requirement' if below?(@minimum_withdrawal, amount)
     @balance -= amount
     debit(amount)
   end
