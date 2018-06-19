@@ -8,7 +8,7 @@ transaction_log = TransactionLog.new
 printer = Printer.new(transaction_log)
 transaction_1 = account.deposit(1000)
 transaction_log.add(transaction_1)
-transaction_2 = account.deposit(2000)
+transaction_2 = account.deposit(2000) #
 transaction_log.add(transaction_2)
 transaction_3 = account.withdraw(500)
 transaction_log.add(transaction_3)

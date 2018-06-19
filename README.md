@@ -22,3 +22,9 @@ SO THAT I can keep track of my bank account transactions
 ## Technology Stack Used
 - Ruby
 - RSpec for testing
+
+## Getting Started
+
+## Approach to Solving the Problem
+  - possible additional features
+  - list dependencies here

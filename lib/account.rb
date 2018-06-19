@@ -4,12 +4,15 @@ class Account
   attr_reader :balance
 
   BALANCE = 0
+  MINIMUM_DEPOSIT = 1
 
   def initialize
     @balance = BALANCE
+    @minimum_deposit = MINIMUM_DEPOSIT
   end
 
   def deposit(amount)
+    raise 'Deposit amount below minimum deposit requirement' if below_min_deposit?(amount)
     @balance += amount
     credit(amount)
   end
@@ -21,6 +24,10 @@ class Account
   end
 
   private
+
+  def below_min_deposit?(amount)
+    amount < @minimum_deposit
+  end
 
   def insufficient_funds?(amount)
     amount > @balance
