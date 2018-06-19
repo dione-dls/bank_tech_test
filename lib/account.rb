@@ -32,11 +32,11 @@ class Account
     amount < min
   end
 
-  def credit(amount)
-    Transaction.new(@balance, amount, 0)
+  def credit(amount, transaction = Transaction)
+    transaction.new(@balance, amount, 0)
   end
 
-  def debit(amount)
-    Transaction.new(@balance, 0, amount)
+  def debit(amount, transaction = Transaction)
+    transaction.new(@balance, 0, amount)
   end
 end
