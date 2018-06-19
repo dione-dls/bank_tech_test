@@ -23,6 +23,9 @@ describe Account do
     it 'raises an error when amount to be deposited is less than minimum deposit requirement' do
       expect { account.deposit(0) }.to raise_error RuntimeError
     end
+    it 'creates a transaction with the deposit details' do
+      expect(account.deposit(1000)).to be_an_instance_of(Transaction)
+    end
   end
 
   describe '#withdraw' do
@@ -35,6 +38,10 @@ describe Account do
     end
     it 'raises an error when amount to be withdrawn is less than minimum withdrawal amount' do
       expect { account.withdraw(0) }.to raise_error RuntimeError
+    end
+    it 'creates a transaction with the withdrawal details' do
+      account.deposit(2000)
+      expect(account.withdraw(1000)).to be_an_instance_of(Transaction)
     end
   end
 end

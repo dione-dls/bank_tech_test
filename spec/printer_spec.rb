@@ -13,13 +13,7 @@ describe Printer do
     end
   end
 
-  describe '#header' do
-    it 'pretty prints a statement header' do
-      expect { printer.header }.to output(" date || credit || debit || balance \n").to_stdout
-    end
-  end
-
-  describe '#statement' do
+  describe '#pretty_print' do
     let(:pretty_print) {
       " date || credit || debit || balance \n " \
     "14/01/2012 || 0.00 || 500.00 || 2500.00 \n " \
@@ -27,7 +21,7 @@ describe Printer do
     "10/01/2012 || 1000.00 || 0.00 || 1000.00 \n"
     }
     it 'pretty prints all the transactions related to the account' do
-      expect { printer.statement }.to output(pretty_print).to_stdout
+      expect { printer.pretty_print }.to output(pretty_print).to_stdout
     end
   end
 end
