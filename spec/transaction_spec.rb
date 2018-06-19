@@ -4,7 +4,7 @@ describe Transaction do
   subject(:transaction) { described_class.new(0, 1000, 0) }
 
   describe '#initialize' do
-    it 'returns the balance of the account' do
+    it 'returns the balance of the account after a transaction has been made' do
       expect(transaction.balance).to eq 0
     end
 
