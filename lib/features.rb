@@ -14,9 +14,10 @@ transaction_3 = account.withdraw(500)
 transaction_log.add(transaction_3)
 printer.statement
 
-# To check if error is raised when amount to be withdrawn is > balance
+# Uncomment line below to check if error is raised when amount to be withdrawn is > balance
 # account.withdraw(5000)
 
-
+# Uncomment line below to check if error is raised when amount to be deposited is < minimum deposit requirement
+# account.deposit(-1)
 
 # irb -r './lib/features.rb'

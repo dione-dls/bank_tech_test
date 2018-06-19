@@ -13,10 +13,8 @@ describe Account do
     it 'increases the balance by a specified amount' do
       expect { account.deposit(1000) }.to change { account.balance }.by 1000
     end
-    it 'raises an error when amount to be deposited is less than minimum amount' do
+    it 'raises an error when amount to be deposited is less than minimum deposit requirement' do
       expect { account.deposit(0) }.to raise_error RuntimeError
-    end
-    xit 'returns a new credit transaction record' do
     end
   end
 
@@ -28,7 +26,8 @@ describe Account do
     it 'raises an error when amount to be withdrawn is greater than balance' do
       expect { account.withdraw(4000) }.to raise_error RuntimeError
     end
-    xit 'returns a new debit transaction record' do
+    it 'raises an error when amount to be withdrawn is less than minimum withdrawal amount' do
+      expect { account.withdraw(0) }.to raise_error RuntimeError
     end
   end
 end
