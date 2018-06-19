@@ -1,5 +1,3 @@
-require_relative 'transaction'
-
 class Account
   attr_reader :balance
 
@@ -14,14 +12,14 @@ class Account
   end
 
   def deposit(amount)
-    raise 'Amount below minimum deposit requirement' if below_min_deposit?(amount)
+    raise 'Amount below minimum deposit requirement' if below?(@minimum_deposit, amount)
     @balance += amount
     credit(amount)
   end
 
   def withdraw(amount)
     raise 'Insufficient funds' if insufficient_funds?(amount)
-    raise 'Amount below minimum withdrawal requirement' if below_min_withdrawal?(amount)
+    raise 'Amount below minimum withdrawal requirement' if below?(@minimum_deposit, amount)
     @balance -= amount
     debit(amount)
   end
@@ -32,12 +30,8 @@ class Account
     amount > @balance
   end
 
-  def below_min_deposit?(amount)
-    amount < @minimum_deposit
-  end
-
-  def below_min_withdrawal?(amount)
-    amount < @minimum_withdrawal
+  def below?(min, amount)
+    amount < min
   end
 
   def credit(amount)
