@@ -7,6 +7,13 @@ describe Account do
     it 'has a default balance of 0' do
       expect(account.balance).to eq 0
     end
+    it 'increases when a deposit is made' do
+      expect { account.deposit(500) }.to change { account.balance }.by 500
+    end
+    it 'decreases when a withdrawal is made' do
+      account.deposit(500)
+      expect { account.withdraw(200) }.to change { account.balance }.by(-200)
+    end
   end
 
   describe '#deposit' do
