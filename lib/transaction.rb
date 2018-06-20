@@ -1,30 +1,10 @@
-require 'date'
-
 class Transaction
-  attr_reader :type, :balance, :amount, :date
+  attr_reader :balance, :credit, :debit, :date
 
-  def initialize(type, balance, amount, date)
-    @type = type
+  def initialize(balance, credit, debit, date)
     @balance = balance
-    @amount = amount
+    @credit = credit
+    @debit = debit
     @date = date
-  end
-
-  def classify
-    if @type == 'credit'
-      {
-        balance: @balance,
-        credit_amount: @amount,
-        debit_amount: 0,
-        date: @date
-      }
-    elsif @type == 'debit'
-      {
-        balance: @balance,
-        credit_amount: 0,
-        debit_amount: @amount,
-        date: @date
-      }
-    end
   end
 end

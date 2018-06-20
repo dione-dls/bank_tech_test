@@ -1,11 +1,10 @@
 require 'printer'
 
 describe Printer do
-  let(:all_transactions) {
-    [{ balance: 1000, credit_amount: 1000, debit_amount: 0, date: '10/01/2012' },
-     { balance: 3000, credit_amount: 2000, debit_amount: 0, date: '13/01/2012' },
-     { balance: 2500, credit_amount: 0, debit_amount: 500, date: '14/01/2012' }]
-  }
+  let(:transaction_1) { double :transaction, balance: 1000, credit: 1000, debit: 0, date: '10/01/2012' }
+  let(:transaction_2) { double :transaction, balance: 3000, credit: 2000, debit: 0, date: '13/01/2012' }
+  let(:transaction_3) { double :transaction, balance: 2500, credit: 0, debit: 500, date: '14/01/2012' }
+  let(:transaction_log) { double :transaction_log, all: [transaction_1, transaction_2, transaction_3] }
   subject(:printer) { described_class.new }
 
   describe '#pretty_print' do
@@ -16,7 +15,7 @@ describe Printer do
     "10/01/2012 || 1000.00 || 0.00 || 1000.00 \n"
     }
     it 'pretty prints all the transactions related to the account' do
-      expect { printer.pretty_print(all_transactions) }.to output(pretty_print).to_stdout
+      expect { printer.pretty_print(transaction_log.all) }.to output(pretty_print).to_stdout
     end
   end
 end
