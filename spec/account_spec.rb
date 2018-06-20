@@ -1,6 +1,7 @@
 require 'account'
 
 describe Account do
+  let(:transaction_log) { double :transaction_log }
   subject(:account) { described_class.new }
 
   describe '#balance' do
@@ -23,8 +24,9 @@ describe Account do
     it 'raises an error when amount to be deposited is less than minimum deposit requirement' do
       expect { account.deposit(0) }.to raise_error RuntimeError
     end
-    it 'creates a transaction with the deposit details' do
-      expect(account.deposit(1000)).to be_an_instance_of(Transaction)
+    fit 'creates a record of the deposit and stores it in a transaction log' do
+      allow(transaction_log).to receive(:add)
+      account.deposit(1000)
     end
   end
 
@@ -39,9 +41,10 @@ describe Account do
     it 'raises an error when amount to be withdrawn is less than minimum withdrawal amount' do
       expect { account.withdraw(0) }.to raise_error RuntimeError
     end
-    it 'creates a transaction with the withdrawal details' do
-      account.deposit(2000)
-      expect(account.withdraw(1000)).to be_an_instance_of(Transaction)
+    it 'creates a record of the withdrawal and stores it in a transaction log' do
+      account.deposit(1000)
+      allow(transaction_log).to receive(:add)
+      account.withdraw(500)
     end
   end
 end

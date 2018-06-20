@@ -1,7 +1,7 @@
 require 'transaction'
 
 describe Transaction do
-  subject(:transaction) { described_class.new(0, 1000, 0) }
+  subject(:transaction) { described_class.new(0, 1000, 0, '10/01/2012') }
 
   describe '#initialize' do
     it 'has an attribute that returns the balance of the account after a transaction has been made' do
@@ -17,7 +17,7 @@ describe Transaction do
     end
 
     it 'has an attribute that returns the transaction date' do
-      expect(transaction.date).to eq Date.today.strftime
+      expect(transaction.date).to eq '10/01/2012'
     end
   end
 end
