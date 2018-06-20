@@ -85,3 +85,5 @@ $ account.deposit(2000, '13/01/2012')
 $ account.withdraw(500, '14/01/2012')
 $ account.statement
 ```
+Below is a sample of the output when the commands are run in IRB
+![Diagram](https://github.com/dione-dls/bank_tech_test/blob/master/docs/no_date_passed.png?raw=true)
