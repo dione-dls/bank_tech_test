@@ -1,25 +1,25 @@
 # Bank Tech Test
+This is a practice tech test at Makers Academy which is designed to give us an idea of what tech tests are like in the real world.
 
-## Technology Stack Used
-- Ruby
-- RSpec for testing
-- Simplecov to check for test coverage
-- Rubocop to avoid style violations
+This practice session is about producing the best code given a minimal time pressure where OO Design and TDD skills can be put into good practice.
 
-## Installation
-Clone the repository to your local machine
+## Running the Project
+Using your command line, clone the repository to your local machine
 ```sh
 git clone git@github.com:dione-dls/bank_tech_test.git
 ```
-Install the necessary ruby gems
+Switch to the cloned repo and install the necessary ruby gems
 ```sh
 $ bundle install
 ```
-
-## Running the Project
-(Include screenshot of running app)
-
-## Running the Tests
+Run RSpec to ensure all tests are passing
+```sh
+$ rspec
+```
+You may also run Rubocop to check style violations in the written code
+```sh
+$ rubocop
+```
 
 ## Approach to Solving the Problem
 
@@ -47,7 +47,7 @@ AS A client
 I WANT to see my bank account statement
 SO THAT I can keep track of my bank account transactions
 ```
-  Next I have created a diagram to better understand what classes I need to create in order to make a command line application with the following specifications.
+  Next I have created a diagram to better understand what classes I need to create in order to make an application which I can interact with via a REPL like IRB.
 
 
 
