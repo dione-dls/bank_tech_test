@@ -49,8 +49,9 @@ SO THAT I can keep track of my bank account transactions
 ```
 Next I have created a diagram to better understand what classes I need to create in order to make an application which I can interact with via a REPL like IRB.
 
+Given my understanding of the problem, I have decided to create four classes: Account, Transaction, Transaction Log, and Printer. Each of these classes have single responsibilities as detailed in the diagram below.
 
-Given my understanding of the problem, I have decided to create four classes: Account, Transaction, Transaction Log, and Printer. Each of these classes have single responsibilities as detailed in the diagram above.
+![Diagram](https://github.com/dione-dls/bank_tech_test/blob/master/docs/bank-tech-test.png?raw=true)
 
 This project was written entirely following a TDD approach.
 
