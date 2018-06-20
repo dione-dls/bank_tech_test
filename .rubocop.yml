@@ -26,3 +26,6 @@ Style/BlockDelimiters:
     - subject
     - watch
     - expect
+
+Metrics/MethodLength:
+  Max: 20

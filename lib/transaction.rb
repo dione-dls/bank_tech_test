@@ -12,13 +12,15 @@ class Transaction
 
   def classify
     if @type == 'credit'
-      { balance: @balance,
+      {
+        balance: @balance,
         credit_amount: @amount,
         debit_amount: 0,
         date: @date
       }
     elsif @type == 'debit'
-      { balance: @balance,
+      {
+        balance: @balance,
         credit_amount: 0,
         debit_amount: @amount,
         date: @date
