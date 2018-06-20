@@ -1,7 +1,7 @@
 class Printer
   def pretty_print(all_transactions)
-  header
-  all_transactions.reverse_each do |transaction|
+    header
+    all_transactions.reverse_each do |transaction|
       puts " #{transaction[:date]} ||" \
       " #{format('%.2f', transaction[:credit_amount])} ||" \
       " #{format('%.2f', transaction[:debit_amount])} ||" \

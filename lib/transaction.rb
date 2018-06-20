@@ -17,7 +17,7 @@ class Transaction
         debit_amount: 0,
         date: @date
       }
-    else @type == 'debit'
+    elsif @type == 'debit'
       { balance: @balance,
         credit_amount: 0,
         debit_amount: @amount,

@@ -11,13 +11,13 @@ class Account
     @printer = printer
   end
 
-  def deposit(amount, date=Date.today.strftime)
+  def deposit(amount, date = Date.today.strftime)
     raise 'Amount below minimum deposit requirement' if is_below?(MINIMUM_DEPOSIT, amount)
     @balance += amount
     create_transaction('credit', amount, date)
   end
 
-  def withdraw(amount, date=Date.today.strftime)
+  def withdraw(amount, date = Date.today.strftime)
     raise 'Insufficient funds' if insufficient_funds?(amount)
     raise 'Amount below minimum withdrawal requirement' if is_below?(MINIMUM_WITHDRAWAL, amount)
     @balance -= amount
