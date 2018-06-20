@@ -4,12 +4,12 @@ require './lib/transaction.rb'
 require './lib/printer.rb'
 
 account = Account.new
-# account.deposit(1000)
-# account.deposit(2000)
-# account.withdraw(500)
-account.deposit(1000, '10/01/2012')
-account.deposit(2000, '10/01/2012')
-account.withdraw(500, '10/01/2012')
+account.deposit(1000)
+account.deposit(2000)
+account.withdraw(500)
+# account.deposit(1000, '10/01/2012')
+# account.deposit(2000, '13/01/2012')
+# account.withdraw(500, '14/01/2012')
 account.statement
 
 # Uncomment line below to check if error is raised when amount to be withdrawn is > balance

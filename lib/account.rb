@@ -12,16 +12,16 @@ class Account
   end
 
   def deposit(amount, date=Date.today.strftime)
-    raise 'Amount below minimum deposit requirement' if below?(MINIMUM_DEPOSIT, amount)
+    raise 'Amount below minimum deposit requirement' if is_below?(MINIMUM_DEPOSIT, amount)
     @balance += amount
-    credit(amount, date)
+    create_transaction('credit', amount, date)
   end
 
   def withdraw(amount, date=Date.today.strftime)
     raise 'Insufficient funds' if insufficient_funds?(amount)
-    raise 'Amount below minimum withdrawal requirement' if below?(MINIMUM_WITHDRAWAL, amount)
+    raise 'Amount below minimum withdrawal requirement' if is_below?(MINIMUM_WITHDRAWAL, amount)
     @balance -= amount
-    debit(amount, date)
+    create_transaction('debit', amount, date)
   end
 
   def statement
@@ -34,21 +34,17 @@ class Account
     amount > @balance
   end
 
-  def below?(min, amount)
+  def is_below?(min, amount)
     amount < min
   end
 
-  def credit(amount, transaction = Transaction, date)
-    record = transaction.new(@balance, amount, 0, date)
-    @transaction_log.add(record)
-  end
-
-  def debit(amount, transaction = Transaction, date)
-    record = transaction.new(@balance, 0, amount, date)
-    @transaction_log.add(record)
+  def create_transaction(type, amount, transaction = Transaction, date)
+    record = transaction.new(type, @balance, amount, date)
+    classified_record = record.classify
+    transaction_log.add(classified_record)
   end
 
   def show
-    @printer.pretty_print(transaction_log)
+    @printer.pretty_print(@transaction_log.all)
   end
 end
