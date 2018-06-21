@@ -28,7 +28,7 @@ class Account
   end
 
   def statement
-    show
+    @printer.pretty_print(@transaction_log.all)
   end
 
   private
@@ -49,9 +49,5 @@ class Account
   def debit(amount, date)
     record = @transaction.new(@balance, credit_amt = 0, amount, date)
     transaction_log.add(record)
-  end
-
-  def show
-    @printer.pretty_print(@transaction_log.all)
   end
 end
