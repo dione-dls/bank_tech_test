@@ -1,13 +1,14 @@
 require 'date'
 
 class Account
-  attr_reader :balance, :transaction_log, :printer, :transaction
+  attr_reader :balance, :transaction_log
 
   BALANCE = 0
   MINIMUM_DEPOSIT = 1
   MINIMUM_WITHDRAWAL = 1
 
-  def initialize(transaction_log = TransactionLog.new, printer = Printer.new, transaction = Transaction, date = Date.today.strftime)
+  def initialize(transaction_log = TransactionLog.new, printer = Printer.new,
+                 transaction = Transaction, date = Date.today.strftime)
     @balance = BALANCE
     @transaction_log = transaction_log
     @printer = printer
@@ -16,16 +17,18 @@ class Account
   end
 
   def deposit(amount, date = @date)
-    raise 'Amount below minimum deposit requirement' if below?(MINIMUM_DEPOSIT, amount)
+    raise 'Amount is below minimum deposit amount' if below?(MINIMUM_DEPOSIT, amount)
     @balance += amount
-    credit(amount, date)
+    debit_amount = 0
+    new_transaction(amount, debit_amount, date)
   end
 
   def withdraw(amount, date = @date)
     raise 'Insufficient funds' if insufficient_funds?(amount)
-    raise 'Amount below minimum withdrawal requirement' if below?(MINIMUM_WITHDRAWAL, amount)
+    raise 'Amount is below minimum withdrawal amount' if below?(MINIMUM_WITHDRAWAL, amount)
     @balance -= amount
-    debit(amount, date)
+    credit_amount = 0
+    new_transaction(credit_amount, amount, date)
   end
 
   def statement
@@ -42,13 +45,8 @@ class Account
     amount < min
   end
 
-  def credit(amount, date)
-    record = @transaction.new(@balance, amount, debit_amt = 0, date)
-    transaction_log.add(record)
-  end
-
-  def debit(amount, date)
-    record = @transaction.new(@balance, credit_amt = 0, amount, date)
-    transaction_log.add(record)
+  def new_transaction(credit_amount, debit_amount, date)
+    record = @transaction.new(@balance, credit_amount, debit_amount, date)
+    @transaction_log.add(record)
   end
 end
