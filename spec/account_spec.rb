@@ -2,11 +2,12 @@ require 'account'
 
 describe Account do
   let(:transaction) { double :transaction }
+  let(:transaction_log) { double :transaction_log }
   let(:transaction_1) { double :transaction, balance: 1000, credit: 1000, debit: 0, date: '10/01/2012' }
   let(:transaction_2) { double :transaction, balance: 3000, credit: 2000, debit: 0, date: '13/01/2012' }
   let(:transaction_3) { double :transaction, balance: 2500, credit: 0, debit: 500, date: '14/01/2012' }
-  let(:transaction_log) { double :transaction_log, all: [transaction_1, transaction_2, transaction_3] }
-  let(:printer) { double :printer, pretty_print: transaction_log }
+  let(:transaction_log_2) { double :transaction_log, all: [transaction_1, transaction_2, transaction_3] }
+  let(:printer) { double :printer, pretty_print: transaction_log_2 }
   subject(:account) { described_class.new(transaction_log, printer, transaction) }
 
   describe '#balance' do
@@ -39,6 +40,7 @@ describe Account do
       allow(transaction).to receive(:new)
       allow(transaction_log).to receive(:add)
       account.deposit(1000)
+      expect(transaction_log_2.all).to include(transaction_1)
     end
   end
 
@@ -61,33 +63,21 @@ describe Account do
       account.deposit(1000)
       account.deposit(2000)
       account.withdraw(500)
-      expect(transaction_log.all).to include(transaction_1)
-      expect(transaction_log.all).to include(transaction_2)
-      expect(transaction_log.all).to include(transaction_3)
+      expect(transaction_log_2.all).to include(transaction_1)
+      expect(transaction_log_2.all).to include(transaction_2)
+      expect(transaction_log_2.all).to include(transaction_3)
     end
   end
 
   describe '#statement' do
-    # let(:snapshot) {
-    #   " date || credit || debit || balance \n " \
-    # "14/01/2012 || 0.00 || 500.00 || 2500.00 \n " \
-    # "13/01/2012 || 2000.00 || 0.00 || 3000.00 \n " \
-    # "10/01/2012 || 1000.00 || 0.00 || 1000.00 \n"
-    # }
-    it 'prints out the account statement to the screen' do
-      allow(transaction).to receive(:new)
-      allow(transaction_log).to receive(:add)
-      allow(transaction_log).to receive(:all)
-
-      # allow(printer).to receive(:pretty_print)
-      # account.deposit(1000, '10/01/2012')
-      # account.deposit(2000, '13/01/2012')
-      # account.withdraw(500, '14/01/2012')
-      p account.statement
-      expect { account.statement }.to output(" date || credit || debit || balance \n " \
+    let(:text) {
+      " date || credit || debit || balance \n " \
     "14/01/2012 || 0.00 || 500.00 || 2500.00 \n " \
     "13/01/2012 || 2000.00 || 0.00 || 3000.00 \n " \
-    "10/01/2012 || 1000.00 || 0.00 || 1000.00 \n").to_stdout
+    "10/01/2012 || 1000.00 || 0.00 || 1000.00 \n"
+    }
+    it 'returns all the transactions related to the account' do
+      allow(printer).to receive(:pretty_print).with(transaction_log).and_return(text)
     end
   end
 end

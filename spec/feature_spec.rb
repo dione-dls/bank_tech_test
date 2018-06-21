@@ -1,4 +1,7 @@
 require 'account'
+require 'transaction_log'
+require 'transaction'
+require 'printer'
 
 describe 'Printing the statement' do
   let(:pretty_print) {
@@ -14,7 +17,4 @@ describe 'Printing the statement' do
     account.withdraw(500, '14/01/2012')
     expect { account.statement }.to output(pretty_print).to_stdout
   end
-end
-
-describe 'Making a deposit' do
 end

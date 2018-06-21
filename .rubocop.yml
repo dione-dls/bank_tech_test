@@ -29,3 +29,6 @@ Style/BlockDelimiters:
 
 Metrics/MethodLength:
   Max: 20
+
+Lint/UselessAssignment:
+  Enabled: false

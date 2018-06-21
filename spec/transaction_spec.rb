@@ -8,11 +8,11 @@ describe Transaction do
       expect(transaction.balance).to eq 1000
     end
 
-    it 'has an attribute that returns the amount of the transaction' do
+    it 'has an attribute that returns the credit amount of the transaction' do
       expect(transaction.credit).to eq 1000
     end
 
-    it 'has an attribute that returns the debit of the transaction' do
+    it 'has an attribute that returns the debit amount of the transaction' do
       expect(transaction.debit).to eq 0
     end
 
