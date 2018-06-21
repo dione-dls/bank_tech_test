@@ -1,49 +1,33 @@
-require './lib/account.rb'
-require './lib/transaction_log.rb'
-require './lib/transaction.rb'
-require './lib/printer.rb'
+require 'account'
+require 'transaction_log'
+require 'transaction'
+require 'printer'
 
-def make_a_deposit
-  account = Account.new
-  account.deposit(1000)
+describe 'Making a deposit' do
+  it 'user makes a deposit by calling the deposit method' do
+    account = Account.new
+    account.deposit(1000)
+    expect(account.balance).to eq 1000
+  end
+
+  it 'user makes a deposit below the minimum amount required' do
+    account = Account.new
+    expect { account.deposit(-100) }.to raise_error RuntimeError
+  end
 end
 
-def deposit_below_required_minimum
-  account = Account.new
-  account.deposit(1000)
-  account.deposit(-100)
-end
-
-def make_a_withdrawal
-  account = Account.new
-  account.deposit(1000)
-  account.withdraw(500)
-end
-
-def withdraw_more_than_current_balance
-  account = Account.new
-  account.deposit(1000)
-  account.withdraw(5000)
-end
-
-def withdraw_below_required_minimum
-  account = Account.new
-  account.deposit(1000)
-  account.withdraw(-100)
-end
-
-def check_balance
-  account = Account.new
-  account.deposit(1000)
-  account.deposit(2000)
-  account.withdraw(500)
-  account.balance
-end
-
-def view_statement
-  account = Account.new
-  account.deposit(1000)
-  account.deposit(2000)
-  account.withdraw(500)
-  account.statement
+describe 'Printing the statement' do
+  let(:pretty_print) {
+    " date || credit || debit || balance \n " \
+  "14/01/2012 || 0.00 || 500.00 || 2500.00 \n " \
+  "13/01/2012 || 2000.00 || 0.00 || 3000.00 \n " \
+  "10/01/2012 || 1000.00 || 0.00 || 1000.00 \n"
+  }
+  it 'user sees all bank account transactions printed on the screen' do
+    account = Account.new
+    account.deposit(1000, '10/01/2012')
+    account.deposit(2000, '13/01/2012')
+    account.withdraw(500, '14/01/2012')
+    expect { account.statement }.to output(pretty_print).to_stdout
+  end
 end

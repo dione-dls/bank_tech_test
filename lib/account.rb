@@ -7,20 +7,21 @@ class Account
   MINIMUM_DEPOSIT = 1
   MINIMUM_WITHDRAWAL = 1
 
-  def initialize(transaction_log = TransactionLog.new, printer = Printer.new, transaction = Transaction)
+  def initialize(transaction_log = TransactionLog.new, printer = Printer.new, transaction = Transaction, date = Date.today.strftime)
     @balance = BALANCE
     @transaction_log = transaction_log
     @printer = printer
     @transaction = transaction
+    @date = date
   end
 
-  def deposit(amount, date = Date.today.strftime)
+  def deposit(amount, date = @date)
     raise 'Amount below minimum deposit requirement' if below?(MINIMUM_DEPOSIT, amount)
     @balance += amount
     credit(amount, date)
   end
 
-  def withdraw(amount, date = Date.today.strftime)
+  def withdraw(amount, date = @date)
     raise 'Insufficient funds' if insufficient_funds?(amount)
     raise 'Amount below minimum withdrawal requirement' if below?(MINIMUM_WITHDRAWAL, amount)
     @balance -= amount
